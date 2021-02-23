@@ -1,4 +1,7 @@
-<h1>Bookmarks</h1>
+<h1>My Bookmarks</h1>
+
+<button type="button" onClick="location.href='/add_bookmark'" name="add">Add new bookmark</button>
+
 <ul>
   <% @bookmarks.each do |bookmark| %>
   <li><%= bookmark %></li>
