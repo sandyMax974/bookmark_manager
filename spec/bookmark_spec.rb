@@ -1,11 +1,9 @@
 require 'bookmark'
 
 describe Bookmarks do
-  it 'returns a list of bookmarks' do
-    expect(subject.list).to eq(['Google','Makers','Codewars'])
-  end
-
-  it 'should return a string of bookmarks' do
-    expect(subject.all).to eq('Google<br>Makers<br>Codewars')
+  describe '.all' do
+    it 'should return a string of bookmarks' do
+      expect(Bookmarks.all).to eq(['http://makers.tech', 'http://www.destroyallsoftware.com', 'http://www.google.com'])
+    end
   end
 end
