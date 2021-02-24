@@ -15,10 +15,15 @@ describe Bookmarks do
   end
 
   describe '.add' do
-    it 'add a new bookmark to the list of bookmark' do
-      site = 'https://www.disneyplus.com/'
-      Bookmarks.add(site)
-      expect(Bookmarks.all).to include(site)
+    # it 'creates a new bookmark' do
+    #   site = 'https://www.disneyplus.com/'
+    #   Bookmarks.add(site)
+    #   expect(Bookmarks.all).to include(site)
+    # end
+    it 'creates a new bookmark' do
+      bookmark = Bookmarks.add('http://www.testbookmark.com', 'Test Bookmark').first
+      expect(bookmark['url']).to eq 'http://www.testbookmark.com'
+      expect(bookmark['title']).to eq 'Test Bookmark'
     end
   end
 end

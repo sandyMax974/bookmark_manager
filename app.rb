@@ -14,10 +14,11 @@ class BookmarkManager < Sinatra::Base
   end
 
   post '/add_bookmark/add' do
-    site = params['bookmark_url']
-    Bookmarks.add(site)
+    Bookmarks.add(url = params['url'], title = params['title'])
+    # p bookmark
+    # Bookmarks.add(url: params['url'], title: params['title']) # walkthrough method
     redirect '/bookmarks'
   end
 
-  run! if app_file == $PROGRAM_NAME
+  run! if app_file == $0
 end
