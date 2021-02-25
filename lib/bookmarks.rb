@@ -15,12 +15,13 @@ class Bookmarks
     results.map { |row| Bookmark.new(row['id'], row['title'], row['url']) }
   end
 
-  def self.add(url, title) # this method return a hash thanks to the RETURNING syntax 
+  def self.add(url, title) # this method return a hash thanks to the RETURNING syntax
     connection = if ENV['ENVIRONMENT'] == 'test'
                    PG.connect dbname: 'bookmark_manager_test'
                  else
                    PG.connect dbname: 'bookmark_manager'
                  end
-    connection.exec("INSERT INTO bookmarks (title, url) VALUES('#{title}', '#{url}') RETURNING id, url, title")
+    insert = connection.exec("INSERT INTO bookmarks (title, url) VALUES('#{title}', '#{url}') RETURNING id, url, title")
+    Bookmark.new(insert[0]['id'], insert[0]['title'], insert[0]['url'])
   end
 end

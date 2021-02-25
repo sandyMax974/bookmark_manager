@@ -14,12 +14,11 @@ describe Bookmarks do
     # end
 
     it 'should return a bookmark object' do
-      Bookmarks.add('http://makers.tech', 'Makers Academy').first
-      Bookmarks.add('http://www.google.com', 'Google').first
+      Bookmarks.add('http://makers.tech', 'Makers Academy')
+      Bookmarks.add('http://www.google.com', 'Google')
 
       expect(Bookmarks.all).to all be_an_instance_of Bookmark
     end
-
   end
 
   describe '.add' do
@@ -28,10 +27,18 @@ describe Bookmarks do
     #   Bookmarks.add(site)
     #   expect(Bookmarks.all).to include(site)
     # end
-    it 'creates a new bookmark' do
-      bookmark = Bookmarks.add('http://www.testbookmark.com', 'Test Bookmark').first
-      expect(bookmark['url']).to eq 'http://www.testbookmark.com'
-      expect(bookmark['title']).to eq 'Test Bookmark'
+    # it 'creates the new bookmark as a hash' do
+    #   bookmark = Bookmarks.add('http://www.testbookmark.com', 'Test Bookmark')
+    #   expect(bookmark['url']).to eq 'http://www.testbookmark.com'
+    #   expect(bookmark['title']).to eq 'Test Bookmark'
+    # end
+    it 'return the new bookmark as a Bookmark object' do
+      bookmark = Bookmarks.add('http://www.testbookmark.com', 'Test Bookmark')
+      # What is the step below for?
+      # persisted_data = PG.connect(dbname: 'bookmark_manager_test').query("SELECT * FROM bookmarks WHERE id = #{bookmark.id};")
+      expect(bookmark.url).to eq 'http://www.testbookmark.com'
+      expect(bookmark.title).to eq 'Test Bookmark'
+      expect(bookmark).to be_an_instance_of Bookmark
     end
   end
 end
