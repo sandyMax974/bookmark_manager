@@ -1,0 +1,9 @@
+
+
+
+<form action="/bookmarks/<%=@bookmark_id%>" method="post">
+  <input type="hidden" name="_method" value="PATCH">
+  Updated name: <input type="text" name="updated_title" placeholder="Website name" style="width:200px">
+  Updated URL: <input type="text" name="updated_url" placeholder="www.myfavoritesite.com" style="width:400px">
+  <input type="submit" name="update" value="Update">
+</form>

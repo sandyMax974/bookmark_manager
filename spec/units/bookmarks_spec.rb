@@ -41,4 +41,13 @@ describe Bookmarks do
       expect(bookmark).to be_an_instance_of Bookmark
     end
   end
+  
+  describe '.delete' do
+    it 'delete the given bookmark id' do
+      bookmark = Bookmarks.add('http://makers.tech', 'Makers Academy')
+      Bookmarks.delete(bookmark.id)
+      expect(Bookmarks.all).not_to include bookmark
+    end
+  end
+
 end

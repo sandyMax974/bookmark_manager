@@ -2,13 +2,21 @@
 
 ## User Stories
 ```
-As a user
+As a User
 In order to access my favourite site quickly
 I want to display a list of my bookmarks
 
-As a user
-In order to save time 
+As a User
+In order to save time
 I want to be able to save a website with a bookmark
+
+As a User
+In order to manage my bookmark list
+I want to be able to delete bookmarks I don't use anymore
+
+As a User
+So I can manage my bookmark list
+I want to be able to update bookmarks
 ```
 
 
