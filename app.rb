@@ -24,7 +24,7 @@ class BookmarkManager < Sinatra::Base
   end
 
   delete '/bookmarks/:id' do
-    p params
+    # p params
     # connection = PG.connect(dbname: 'bookmark_manager_test')
     # connection.exec("DELETE FROM bookmarks WHERE id = #{params['id']}")
     Bookmarks.delete(id = params[:id])
@@ -32,19 +32,22 @@ class BookmarkManager < Sinatra::Base
   end
 
   get '/bookmarks/:id/edit' do
+    puts "GET request to edit.erb (app.rb)"
     p params
     @bookmark_id = params[:id]
     erb :edit
   end
 
-  patch 'bookmarks/:id' do
+  patch 'bookmarks/:id' do # something is breaking somewhere here
     @bookmark_id = params[:id]
     @bookmark_title = params['updated_title']
     @bookmark_url = params['updated_url']
-    p params[:id]
-    p params['updated_title']
+    puts 'PATCH request (app.rb)'
+    p params
+
     connection = PG.connect dbname: bookmark_manager_test
-    update = connection.exec("UPDATE bookmarks SET title = '#{@bookmark_title}', url = '#{@bookmark_url}' WHERE id = #{@bookmark_id}") # RETURNING id, url, title")
+    connection.exec("UPDATE bookmarks SET title = '#{@bookmark_title}', url = '#{@bookmark_url}' WHERE id = #{@bookmark_id}") # RETURNING id, url, title")
+
     redirect('/bookmarks')
   end
 

@@ -13,8 +13,10 @@
       <input type="hidden" name="_method" value="DELETE">
       <input type="submit" name="delete" value="Delete">
     </form>
-
-    <button type="button" onClick="location.href='/bookmarks/<%= bookmark.id %>/edit'" name="update">Update</button>
+    <form action="/bookmarks/<%= bookmark.id %>/edit" method="get">
+      <input type="submit" name='update' value="Update" />
+    </form>
+    <!-- <button type="button" onClick="location.href='/bookmarks/<%= bookmark.id %>/edit'" name="update">Update</button> -->
   </li>
   <% end %>
 </ul>
